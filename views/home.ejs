@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<header>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <div class="container-fluid">
+      <!-- Links -->
+      <a class="navbar-brand" href="#">SportyNews</a>
+      <ul class="navbar-nav">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/log">Log in</a>
+        </li>
+      </ul>
+    </div>
+  
+  </nav>
+
+</header>
+
+<body class="text-center">
+
+
+
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+<h1 class="cover-heading">KOLO 1</h1>
+<div class="container bg-light text-dark">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Tim 1</th>
+<th>Tim 2</th>
+<th>Bodovi 1</th>
+<th>Bodovi 2</th>
+</tr>
+</thead>
+<tbody>
+<%table.forEach(function(entry) {%>
+<tr>
+<td><%=entry.name1%></td>
+<td><%=entry.name2%></td>
+<td><%=entry.rez1%></td>
+<td><%=entry.rez2%></td>
+
+</tr>
+<%});%>
+</tbody>
+</table>
+</div>
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    
+    <h1 class="cover-heading">KOLO 2</h1>
+    <div class="container bg-light text-dark">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+    <th>Tim 1</th>
+    <th>Tim 2</th>
+    <th>Bodovi 1</th>
+    <th>Bodovi 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%table1.forEach(function(entry) {%>
+    <tr>
+    <td><%=entry.name1%></td>
+    <td><%=entry.name2%></td>
+    <td><%=entry.rez1%></td>
+    <td><%=entry.rez2%></td>
+    
+    </tr>
+    <%});%>
+    </tbody>
+    </table>
+    </div>
+
+
+
+</div>
+</body>
+<script>
+window.onload = function() {
+document.getElementById('table').classList.add('active');
+document.getElementById('table1').classList.add('active');
+
+};
+</script>
+</html>

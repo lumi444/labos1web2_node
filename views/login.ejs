@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<header>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <div class="container-fluid">
+      <!-- Links -->
+      <a class="navbar-brand" href="/log">SportyNews</a>
+      <p><%= currentUser %></p>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/comment">Comment</a>
+        </li>
+        
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log out</a>
+        </li>
+      </ul>
+    </div>
+  
+  </nav>
+
+</header>
+
+<body class="text-center">
+
+
+
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <div class="buttonadd" style="text-align:right;margin-right:165px;">
+    <%if (currentUser === 'peroadmin@gmail.com') { %>
+      <a href="/addUtakmica1"   >Add</a>
+    <% } %>
+    </div>
+<h1 class="cover-heading">KOLO 1</h1>
+
+<div class="container bg-light text-dark">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Tim 1</th>
+<th>Tim 2</th>
+<th>Bodovi 1</th>
+<th>Bodovi 2</th>
+</tr>
+</thead>
+<tbody>
+<%table.forEach(function(entry) {%>
+<tr>
+<td><%=entry.name1%></td>
+<td><%=entry.name2%></td>
+<td><%=entry.rez1%></td>
+<td><%=entry.rez2%></td>
+<%if (currentUser === 'peroadmin@gmail.com') { %>
+  <td><a class="btn btn-secondary" href="<%=`/log/${entry.id}/editTable1` %>">Edit</a></td>
+<% } %>
+</tr>
+<%});%>
+</tbody>
+</table>
+</div>
+<hr>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="buttonadd" style="text-align:right;margin-right:150px;">
+      <%if (currentUser === 'peroadmin@gmail.com') { %>
+        
+          <a href="/addUtakmica"   >Add</a>
+        
+      <% } %>
+    </div>
+    <h1 class="cover-heading">KOLO 2</h1>
+    <div class="container bg-light text-dark">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+    <th>Tim 1</th>
+    <th>Tim 2</th>
+    <th>Bodovi 1</th>
+    <th>Bodovi 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%table1.forEach(function(entry) {%>
+    <tr>
+    <td><%=entry.name1%></td>
+    <td><%=entry.name2%></td>
+    <td><%=entry.rez1%></td>
+    <td><%=entry.rez2%></td>
+    <%if (currentUser === 'peroadmin@gmail.com') { %>
+      <td><a class="btn btn-secondary" href="<%=`/log/${entry.id}/editTable2` %>">Edit</a></td>
+    <% } %>
+    
+    
+    </tr>
+    <%});%>
+    </tbody>
+    </table>
+    </div>
+
+
+    
+</div>
+<%komentariOsoba.forEach(function(entry) {%> 
+  <form action="<%=`/log/${entry.id}/deleteCom` %>" method="POST">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="obrisi">
+        <div class="container bg-light text-dark" id="obrisi2">
+            <div class="card text-start">
+                <div class="card-header">
+                    <%=entry.author%>
+                </div>
+                <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p><%=entry.comment%></p>
+                    
+                </blockquote>
+
+                <%if (entry.email===currentUser || currentUser === 'peroadmin@gmail.com') { %>
+                  
+                    <button type="submit"  class="btn btn-secondary" onclick="removeItem()">Delete</button>
+                  
+                <% }%>
+                </div>
+            </div>
+        </div>       
+    </div> 
+  </form>
+<%});%>
+
+</body>
+<script>
+
+window.onload = function() {
+document.getElementById('table').classList.add('active');
+document.getElementById('table1').classList.add('active');
+document.getElementById('komentariOsoba').classList.add('active');
+
+function removeItem() {
+ 
+  // Declaring a variable to get select element
+  var a = document.getElementById("obrisi");
+  var candidate = document.getElementById("obrisi2");
+  var item = document.getElementById(candidate.value);
+  a.removeChild(item);
+}
+
+};
+
+
+
+
+</script>
+</html>

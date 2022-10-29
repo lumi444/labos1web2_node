@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<header>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <div class="container-fluid">
+      <!-- Links -->
+      <a class="navbar-brand" href="/log">SportyNews</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/comment">Comment</a>
+        </li>
+        <%if (currentUser === 'peroadmin@gmail.com') { %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Edit</a>
+        </li>
+        <% } %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Log out</a>
+        </li>
+      </ul>
+    </div>
+  
+  </nav>
+
+</header>
+<body>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <div class="container bg-light text-dark">
+    <form action="" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Tim 1</label>
+            <input type="text" class="form-control" name="tim1" id="tim1" placeholder="<%= utakmica.name1 %>">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Tim 2</label>
+            <input type="text" class="form-control" name="tim2" id="tim2" placeholder="<%= utakmica.name2 %>">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Bodovi 1</label>
+            <input type="text" class="form-control" name="bodovi1" id="bodovi1" placeholder="<%= utakmica.rez1 %>">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Bodovi 2</label>
+            <input type="text" class="form-control" name="bodovi2" id="bodovi2" placeholder="<%= utakmica.rez2 %>">
+          </div>
+          
+        </div>
+        
+          
+        
+        
+        <button type="submit" class="btn btn-secondary" style="margin-top:10px">Save</button>
+      </form>
+        </div>
+    </div>
+</body>
+
+<script>
+
+  window.onload = function() {
+  document.getElementById('utakmica').classList.add('active');
+  
+  
+  };
+  </script>
