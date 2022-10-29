@@ -6,7 +6,8 @@ const kolo1Json = require('./kolo1.json');
 const kolo2Json = require('./kolo2.json');
 const komentariJson = require('./komentari.json');
 
-const port =  process.env.port || 3000;
+const externalUrl = process.env.RENDER_EXTERNAL_URL
+const port = externalUrl && process.env.port ? parseInt(process.env.port) : 3000;
 
 const komentarij= [{"id":1,"author":"matekorisnik","email":"matekorisnik@gmail.com","comment":"kad je nova utakmica?"},{"id":2,"author":"vanjakorisnik","email":"vanjakorisnik@gmail.com","comment":"sutra u 6"},{"id":3,"author":"matekorisnik","email":"matekorisnik@gmail.com","comment":"bezveze"}]
 
@@ -18,7 +19,7 @@ app.use(
     authRequired: false,
     auth0Logout: true,
     issuerBaseURL: process.env.ISSUER_BASE_URL,
-    baseURL: process.env.BASE_URL,
+    baseURL: externalUrl || process.env.BASE_URL,
     clientID: process.env.CLIENT_ID,
     secret: process.env.SECRET,
     idpLogout: true,
@@ -273,6 +274,12 @@ app.post('/log/:id/editTable2',(req,res)=>{
   
 
 
+if(externalUrl){
+  const hostname= '127.0.0.1';
+  app.listen(port,hostname, ()=>{
+    console.log(`Server locally running at http://${hostname}:${port}/ and from outside on ${externalUrl}`)
+  })
+}else{
+  app.listen(port,()=>console.info(`Listening on port ${port}`))
+}
 
-
-app.listen(port,()=>console.info(`Listening on port ${port}`))
